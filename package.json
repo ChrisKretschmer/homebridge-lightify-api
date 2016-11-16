@@ -1,0 +1,28 @@
+{
+  "name": "homebridge-lightify-api",
+  "description": "Lightify Homebridge plugin which uses the official API",
+  "version": "0.0.1",
+  "main": "index.js",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/kundk-ckret/homebridge-lightify-api.git"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "GPLv3",
+      "url": "http://www.gnu.de/documents/gpl-3.0.en.html"
+    }
+  ],
+  "dependencies": {
+    "node-rest-client": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "homebridge": ">=0.2.0"
+  }
+}
