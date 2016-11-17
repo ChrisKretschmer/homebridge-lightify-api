@@ -18,8 +18,6 @@ class Lamp extends Plug {
 	                .on('set', this.setState.bind(this))
 	                .on('get', this.getState.bind(this));
 
-	    console.log(this.config);
-
 	    if(this.config.bmpClusters.indexOf('Temperature') >= 0 && this.config.bmpClusters.indexOf('Color') < 0) {
 		    lightService.getCharacteristic(this.homebridgeApi.hap.Characteristic.Saturation)
                     .on('set', this.setK.bind(this))
@@ -59,7 +57,6 @@ class Lamp extends Plug {
 
 	setBrightness(value, callback) {
 		let me = this;
-		//console.log(this.name, arguments)
 		let args = {
 		    data: {},
 		    headers: { 
@@ -85,7 +82,6 @@ class Lamp extends Plug {
 
 	setHue(value, callback) {
 		let me = this;
-		//console.log(this.name, arguments)
 		let args = {
 		    data: {},
 		    headers: { 
@@ -111,12 +107,10 @@ class Lamp extends Plug {
 	}
 
 	setK(value, callback) {
-		console.log(value)
 
 		value = this.remapValue(0, 100, 2700, 6500, value);
 
 		let me = this;
-		//console.log(this.name, arguments)
 		let args = {
 		    data: {},
 		    headers: { 

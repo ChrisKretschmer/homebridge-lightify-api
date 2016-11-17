@@ -31,7 +31,6 @@ class LightifyPlatform {
     }
 
     receiveSecurityToken(callback) {
-    	console.log("renewing security token");
     	let me = this;
 		let args = {
 		    data: { 
@@ -100,7 +99,6 @@ class LightifyPlatform {
 			parameterString += parameter + '=' + parameters[parameter] + '&';
 		}
 		let url = this.apiURL + endpoint + '?' + parameterString;
-		console.log(url);
 		return url;
 	}
 }

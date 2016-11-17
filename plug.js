@@ -28,7 +28,6 @@ class Plug {
 
 	setState(value, callback) {
 		let me = this;
-		//console.log(this.name, arguments)
 		let args = {
 		    data: {},
 		    headers: { 
