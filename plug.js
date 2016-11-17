@@ -40,6 +40,12 @@ class Plug {
 	}
 
 	getState(callback) {
+		this.getDeviceInfo(function(data) {
+			callback(null, data.online && data.on);
+		});
+	}
+
+	getDeviceInfo(callback) {
 		let me = this;
 		let args = {
 		    data: {
@@ -50,7 +56,7 @@ class Plug {
 		    }
 		};
 		me.plugin.restClient.get(me.apiURL + "devices/" + this.config.deviceId, args, function (data, response) {
-			callback(null, data.online && data.on);
+			callback(data);
 		});
 	}
 

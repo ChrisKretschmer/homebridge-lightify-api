@@ -1,6 +1,6 @@
 var RestClient = require('node-rest-client').Client;
 var LightifyPlug = require('./plug.js').Plug;
-var LightifyLamp = require('./plug.js').Lamp;
+var LightifyLamp = require('./lamp.js').Lamp;
 
 var Accessory, Service, Characteristic, UUIDGen;
 
@@ -74,10 +74,10 @@ class LightifyPlatform {
 			    			case 'Plug 01':
 			    				accessories.push(new LightifyPlug(device, me.api, me));
 			    				break;
-			    			// case 'Flex RGBW':
-			    			// case 'Classic A60 TW':
-			    			// 	accessories.push(new LightifyLamp(device, me.api, me));
-			    			// 	break;
+			    			case 'Flex RGBW':
+			    			case 'Classic A60 TW':
+			    				accessories.push(new LightifyLamp(device, me.api, me));
+			    				break;
 			    			default:
 			    				me.log.warn('Unknown device: ' + device.modelName);
 
