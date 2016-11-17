@@ -41,8 +41,8 @@ class LightifyPlatform {
 		    },
 		    headers: { "Content-Type": "application/json" }
 		};
-
-		this.restClient.post(this.apiURL + "session", args, function (data, response) {
+		let url = this.buildUrl("session", {});
+		this.restClient.post(url, args, function (data, response) {
 		    // parsed response body as js object
 		    if(data.errorCode) {
 		    	throw data.errorMessage;
@@ -57,26 +57,28 @@ class LightifyPlatform {
     	let me = this;
     	let accessories = [];
     	this.receiveSecurityToken(function(token) {
-			var args = {
+			let args = {
 			    data: {},
 			    headers: { 
 			    	"Content-Type": "application/json" ,
 			    	"authorization": me.securityToken
 			    }
 			};
-			me.restClient.get(me.apiURL + "devices", args, function (data, response) {
+			let url = me.buildUrl("devices", {});
+			me.restClient.get(url, args, function (data, response) {
 			    // parsed response body as js object
 			    if(data.errorCode) {
 			    	throw data.errorMessage;
 			    } else {
 			    	data.forEach(function(device) {
-			    		switch(device.modelName) {
-			    			case 'Plug 01':
-			    				accessories.push(new LightifyPlug(device, me.api, me));
-			    				break;
-			    			case 'Flex RGBW':
-			    			case 'Classic A60 TW':
-			    				accessories.push(new LightifyLamp(device, me.api, me));
+			    		switch(device.deviceType) {
+			    			case 'LIGHT':
+			    				if(device.modelName.includes('Plug')) {
+			    					accessories.push(new LightifyPlug(device, me.api, me));
+			    				} else {
+			    					accessories.push(new LightifyLamp(device, me.api, me));
+			    				}
+			    				
 			    				break;
 			    			default:
 			    				me.log.warn('Unknown device: ' + device.modelName);
@@ -91,5 +93,14 @@ class LightifyPlatform {
 		});
     }
 
-
+	buildUrl(endpoint, parameters) {
+		parameters = parameters || {};
+		let parameterString = "";
+		for (let parameter in parameters) {
+			parameterString += parameter + '=' + parameters[parameter] + '&';
+		}
+		let url = this.apiURL + endpoint + '?' + parameterString;
+		console.log(url);
+		return url;
+	}
 }

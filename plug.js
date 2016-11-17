@@ -6,6 +6,8 @@ class Plug {
 		this.apiURL = plugin.apiURL;
 		this.config = config;
 		this.plugin = plugin;
+
+		this.currentData = null;
 		//this.mac = 
 	}
 
@@ -34,7 +36,12 @@ class Plug {
 		    	"authorization": me.plugin.securityToken
 		    }
 		};
-		me.plugin.restClient.get(me.apiURL + "device/set" + "?time=0&idx=" + this.config.deviceId + "&onoff=" + value, args, function (data, response) {
+		let url = this.plugin.buildUrl("device/set", {
+			time: 0,
+			idx: this.config.deviceId,
+			onoff: value
+		});
+		me.plugin.restClient.get(url, args, function (data, response) {
     		if(callback) callback();
 		});
 	}
@@ -55,7 +62,11 @@ class Plug {
 		    	"authorization": me.plugin.securityToken
 		    }
 		};
-		me.plugin.restClient.get(me.apiURL + "devices/" + this.config.deviceId, args, function (data, response) {
+
+		let url = this.plugin.buildUrl("devices/" + this.config.deviceId, {});
+
+		me.plugin.restClient.get(url, args, function (data, response) {
+			me.currentData = data;
 			callback(data);
 		});
 	}
