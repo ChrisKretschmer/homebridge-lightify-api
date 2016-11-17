@@ -1,7 +1,7 @@
 {
   "name": "homebridge-lightify-api",
   "description": "Lightify Homebridge plugin which uses the official API",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "keywords": [
     "homebridge-plugin"
