@@ -4,7 +4,11 @@
   "version": "0.0.2",
   "main": "index.js",
   "keywords": [
-    "homebridge-plugin"
+    "homebridge-plugin",
+    "OSRAM",
+    "Lightify",
+    "Smart home",
+    "homebridge"
   ],
   "repositories": [
     {
