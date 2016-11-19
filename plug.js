@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 class Plug {
 	constructor(config, homebridgeApi, plugin) {
 		this.homebridgeApi = homebridgeApi;
@@ -14,7 +16,7 @@ class Plug {
 	getServices() {
 		let outletService = new this.homebridgeApi.hap.Service.Outlet(this.name);
 	    outletService.getCharacteristic(this.homebridgeApi.hap.Characteristic.On)
-	                 .on('set', this.setState.bind(this))
+	                 .on('set', _.debounce(this.setState.bind(this)), 250)
 	                 .on('get', this.getState.bind(this));
 
 	    let service = new this.homebridgeApi.hap.Service.AccessoryInformation();

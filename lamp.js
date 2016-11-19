@@ -1,4 +1,5 @@
 var Plug = require('./plug.js').Plug;
+var _ = require('underscore');
 
 class Lamp extends Plug {
 
@@ -20,23 +21,23 @@ class Lamp extends Plug {
 
 	    if(this.config.bmpClusters.indexOf('Temperature') >= 0 && this.config.bmpClusters.indexOf('Color') < 0) {
 		    lightService.getCharacteristic(this.homebridgeApi.hap.Characteristic.Saturation)
-                    .on('set', this.setK.bind(this))
+                    .on('set', _.debounce(this.setK.bind(this)), 250)
                     .on('get', this.getK.bind(this));
 	    }
 
 	    if (this.config.bmpClusters.indexOf('Level') >= 0) {
 	        lightService.getCharacteristic(this.homebridgeApi.hap.Characteristic.Brightness)
-	                .on('set', this.setBrightness.bind(this))
+	                .on('set', _.debounce(this.setBrightness.bind(this)), 250)
 	                .on('get', this.getBrightness.bind(this));
 	    }
 
 	    if (this.config.bmpClusters.indexOf('Color') >= 0) {
 	        lightService.getCharacteristic(this.homebridgeApi.hap.Characteristic.Hue)
-	                .on('set', this.setHue.bind(this))
+	                .on('set', _.debounce(this.setHue.bind(this)), 250)
 	                .on('get', this.getHue.bind(this));
 
 		    lightService.getCharacteristic(this.homebridgeApi.hap.Characteristic.Saturation)
-                    .on('set', this.setSaturation.bind(this))
+                    .on('set', _.debounce(this.setSaturation.bind(this)), 250)
                     .on('get', this.getSaturation.bind(this));
 	    }
 
