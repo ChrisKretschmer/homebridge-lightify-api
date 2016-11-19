@@ -22,7 +22,7 @@ class LightifyPlatform {
 	    this.restClient = new RestClient();
 	    this.securityToken = null;
 
-	    this.apiURL = "https://eu.lightify-api.org/lightify/services/";
+	    this.apiURL = this.config.apiURL || "https://eu.lightify-api.org/lightify/services/";
 
 	    this.lastDiscovery = null;
 	    this.discoveryResult = [];
