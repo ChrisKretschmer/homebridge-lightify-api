@@ -23,12 +23,12 @@ add the following to your ~/.homebridge/config.json
     
 ###Parameters
 
-username is your Lightify account username
-password is your Lightify account password
-serialNumber is the first block (before the dash) of your Lightify hubs serial number
+*username is your Lightify account username
+*password is your Lightify account password
+*serialNumber is the first block (before the dash) of your Lightify hubs serial number
 
-fadeTime is optional and represents the fading duration between colors
-apiURL is optional and defaults to "https://eu.lightify-api.org/lightify/services/". You need to change it to "https://us.lightify-api.org/lightify/services/" for US, CA and AUS.
+*fadeTime is optional and represents the fading duration between colors
+*apiURL is optional and defaults to "https://eu.lightify-api.org/lightify/services/". You need to change it to "https://us.lightify-api.org/lightify/services/" for US, CA and AUS.
 
 ## Supported Devices
 
