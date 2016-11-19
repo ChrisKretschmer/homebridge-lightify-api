@@ -14,7 +14,7 @@ add the following to your ~/.homebridge/config.json
         "platform": "Lightify API",
         "username": "xxx",
         "password": "xxx",
-        "serialNumber": "YourBaseStationSerialNumber"
+        "serialNumber": "YourBaseStationSerialNumber",
 
         "fadeTime": 3
     }
