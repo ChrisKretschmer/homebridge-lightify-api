@@ -89,7 +89,7 @@ class Lamp extends Plug {
 		    	"authorization": me.plugin.securityToken
 		    }
 		};
-		value = Math.max(0,value);
+		value = Math.max(1,value);
 		value = Math.min(359,value);
 		let url = this.plugin.buildUrl("device/set", {
 			time: 0,

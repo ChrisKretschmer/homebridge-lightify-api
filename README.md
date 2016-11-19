@@ -18,7 +18,7 @@ add the following to your ~/.homebridge/config.json
     }
     ```
     
-Important: the serial number is only the part before the dash.
+Important: enter only the first block of the serial number (before the dash).
 
 ## Supported Devices
 

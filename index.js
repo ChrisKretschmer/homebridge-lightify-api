@@ -99,6 +99,7 @@ class LightifyPlatform {
 			parameterString += parameter + '=' + parameters[parameter] + '&';
 		}
 		let url = this.apiURL + endpoint + '?' + parameterString;
+		console.log(url);
 		return url;
 	}
 }

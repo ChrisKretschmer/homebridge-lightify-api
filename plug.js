@@ -38,7 +38,7 @@ class Plug {
 		let url = this.plugin.buildUrl("device/set", {
 			time: 0,
 			idx: this.config.deviceId,
-			onoff: value
+			onoff: (value) ? 1 : 0
 		});
 		me.plugin.restClient.get(url, args, function (data, response) {
     		if(callback) callback();
