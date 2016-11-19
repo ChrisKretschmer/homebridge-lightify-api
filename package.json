@@ -16,6 +16,7 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
+    "debug": "^2.3.2",
     "node-rest-client": "^2.0.1",
     "underscore": "^1.8.3"
   },

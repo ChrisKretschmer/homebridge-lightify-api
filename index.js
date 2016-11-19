@@ -1,6 +1,7 @@
 var RestClient = require('node-rest-client').Client;
 var LightifyPlug = require('./plug.js').Plug;
 var LightifyLamp = require('./lamp.js').Lamp;
+var debug = require('debug')('LightifyPlugin')
 
 var Accessory, Service, Characteristic, UUIDGen;
 
@@ -99,7 +100,7 @@ class LightifyPlatform {
 			parameterString += parameter + '=' + parameters[parameter] + '&';
 		}
 		let url = this.apiURL + endpoint + '?' + parameterString;
-		console.log(url);
+		debug(url);
 		return url;
 	}
 }
