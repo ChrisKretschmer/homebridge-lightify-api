@@ -15,10 +15,14 @@ add the following to your ~/.homebridge/config.json
         "username": "xxx",
         "password": "xxx",
         "serialNumber": "YourBaseStationSerialNumber"
+
+        "fadeTime": 3
     }
     ```
     
 Important: enter only the first block of the serial number (before the dash).
+
+fadeTime is optional
 
 ## Supported Devices
 
