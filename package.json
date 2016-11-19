@@ -10,20 +10,14 @@
     "Smart home",
     "homebridge"
   ],
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/kundk-ckret/homebridge-lightify-api.git"
-    }
-  ],
-  "licenses": [
-    {
-      "name": "GPLv3",
-      "url": "http://www.gnu.de/documents/gpl-3.0.en.html"
-    }
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kundk-ckret/homebridge-lightify-api.git"
+  },
+  "license": "GPL-3.0",
   "dependencies": {
-    "node-rest-client": "^2.0.1"
+    "node-rest-client": "^2.0.1",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": ">=6.0.0",
