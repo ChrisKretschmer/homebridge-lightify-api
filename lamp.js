@@ -66,7 +66,7 @@ class Lamp extends Plug {
 		    }
 		};
 		let url = this.plugin.buildUrl("device/set", {
-			time: 0,
+			time: this.plugin.config.fadeTime || 0,
 			idx: this.config.deviceId,
 			level: (value / 100)
 		});
@@ -93,7 +93,7 @@ class Lamp extends Plug {
 		value = Math.max(1,value);
 		value = Math.min(359,value);
 		let url = this.plugin.buildUrl("device/set", {
-			time: 0,
+			time: this.plugin.config.fadeTime || 0,
 			idx: this.config.deviceId,
 			hue: value,
 			saturation: this.saturation / 100 || 1
@@ -122,7 +122,7 @@ class Lamp extends Plug {
 		    }
 		};
 		let url = this.plugin.buildUrl("device/set", {
-			time: 0,
+			time: this.plugin.config.fadeTime || 0,
 			idx: this.config.deviceId,
 			ctemp: value
 		});
