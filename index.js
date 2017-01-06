@@ -71,19 +71,23 @@ class LightifyPlatform {
 			    	throw data.errorMessage;
 			    } else {
 			    	data.forEach(function(device) {
-			    		switch(device.deviceType) {
-			    			case 'LIGHT':
-			    				if(device.modelName.includes('Plug')) {
-			    					accessories.push(new LightifyPlug(device, me.api, me));
-			    				} else {
-			    					accessories.push(new LightifyLamp(device, me.api, me));
-			    				}
-			    				
-			    				break;
-			    			default:
-			    				me.log.warn('Unknown device: ' + device.modelName);
+			    		if(device.name && device.name != '') {
+				    		switch(device.deviceType) {
+				    			case 'LIGHT':
+				    				if(device.modelName.includes('Plug')) {
+				    					accessories.push(new LightifyPlug(device, me.api, me));
+				    				} else {
+				    					accessories.push(new LightifyLamp(device, me.api, me));
+				    				}
+				    				
+				    				break;
+				    			default:
+				    				me.log.warn('Unsupported device: ' + device.modelName);
 
-			    		}
+				    		}
+				    	} else {
+				    		me.log.warn('Ignored unnamed device: ' + device.modelName);
+				    	}
 			    		
 			    	});
 			    }
