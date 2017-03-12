@@ -17,7 +17,8 @@ add the following to your ~/.homebridge/config.json
         "serialNumber": "YourBaseStationSerialNumber",
 
         "apiURL": "https://eu.lightify-api.org/lightify/services/",
-        "fadeTime": 3
+        "fadeTime": 3,
+        "exportGroups": "yes"
     }
     ```
     
@@ -29,6 +30,7 @@ add the following to your ~/.homebridge/config.json
 
 * fadeTime is optional and represents the fading duration between colors
 * apiURL is optional and defaults to "https://eu.lightify-api.org/lightify/services/". You need to change it to "https://us.lightify-api.org/lightify/services/" for US, CA and AUS.
+* exportGroups is optional and defaults to yes. If enabled, Lightify Groups get exported as device for homebridge
 
 ## Supported Devices
 
@@ -37,3 +39,8 @@ add the following to your ~/.homebridge/config.json
 * OSRAM Lightify Bulbs (Only tested the A60 TW (tunable white), but others - including RGBW should work too.)
 
 Please let me know if devices behave strange so I can fix it.
+
+## Group Support
+
+This plugin supports Lightify Groups, but they will appear as Plugs in Homekit (at least for the moment).
+To enable support, the config option "exportGroups" must e set to "yes"

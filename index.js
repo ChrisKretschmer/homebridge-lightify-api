@@ -1,6 +1,7 @@
 var RestClient = require('node-rest-client').Client;
 var LightifyPlug = require('./plug.js').Plug;
 var LightifyLamp = require('./lamp.js').Lamp;
+var LightifyGroup = require('./group.js').Group;
 var debug = require('debug')('LightifyPlugin')
 
 var Accessory, Service, Characteristic, UUIDGen;
@@ -23,6 +24,7 @@ class LightifyPlatform {
 	    this.securityToken = null;
 
 	    this.apiURL = this.config.apiURL || "https://eu.lightify-api.org/lightify/services/";
+	    this.exportGroups = this.config.exportGroups || "yes";
 
 	    this.lastDiscovery = null;
 	    this.discoveryResult = [];
@@ -75,7 +77,7 @@ class LightifyPlatform {
 				    		switch(device.deviceType) {
 				    			case 'LIGHT':
 				    				if(device.modelName.includes('Plug')) {
-				    					accessories.push(new LightifyPlug(device, me.api, me));
+										accessories.push(new LightifyPlug(device, me.api, me));
 				    				} else {
 				    					accessories.push(new LightifyLamp(device, me.api, me));
 				    				}
@@ -91,8 +93,31 @@ class LightifyPlatform {
 			    		
 			    	});
 			    }
-
-	    		callback(accessories);
+			    if(me.exportGroups == "yes") {
+			    	let url = me.buildUrl("groups", {});
+					me.restClient.get(url, args, function (data, response) {
+					    // parsed response body as js object
+					    if(data.errorCode) {
+					    	throw data.errorMessage;
+					    } else {
+					    	data.forEach(function(group) {
+					    		if(group.name && group.name != '') {
+					    			if(group.devices.length == 0) {
+					    				me.log.warn('Ignored empty group: ' + group.name);
+					    			} else {
+					    				accessories.push(new LightifyGroup(group, me.api, me));
+					    			}
+						    	} else {
+						    		me.log.warn('Ignored unnamed group');
+						    	}
+					    		
+					    	});
+					    	callback(accessories);
+					    }
+					});
+			    } else {
+			    	callback(accessories);
+			    }
 			});
 		});
     }
