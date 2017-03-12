@@ -72,6 +72,7 @@ class LightifyPlatform {
 			    if(data.errorCode) {
 			    	throw data.errorMessage;
 			    } else {
+			    	// Handle devices
 			    	data.forEach(function(device) {
 			    		if(device.name && device.name != '') {
 				    		switch(device.deviceType) {
@@ -92,31 +93,33 @@ class LightifyPlatform {
 				    	}
 			    		
 			    	});
-			    }
-			    if(me.exportGroups == "yes") {
-			    	let url = me.buildUrl("groups", {});
-					me.restClient.get(url, args, function (data, response) {
-					    // parsed response body as js object
-					    if(data.errorCode) {
-					    	throw data.errorMessage;
-					    } else {
-					    	data.forEach(function(group) {
-					    		if(group.name && group.name != '') {
-					    			if(group.devices.length == 0) {
-					    				me.log.warn('Ignored empty group: ' + group.name);
-					    			} else {
-					    				accessories.push(new LightifyGroup(group, me.api, me));
-					    			}
-						    	} else {
-						    		me.log.warn('Ignored unnamed group');
-						    	}
-					    		
-					    	});
-					    	callback(accessories);
-					    }
-					});
-			    } else {
-			    	callback(accessories);
+
+			    	// Handle Lightify groups
+				    if(me.exportGroups == "yes") {
+				    	let url = me.buildUrl("groups", {});
+						me.restClient.get(url, args, function (data, response) {
+						    // parsed response body as js object
+						    if(data.errorCode) {
+						    	throw data.errorMessage;
+						    } else {
+						    	data.forEach(function(group) {
+						    		if(group.name && group.name != '') {
+						    			if(group.devices.length == 0) {
+						    				me.log.warn('Ignored empty group: ' + group.name);
+						    			} else {
+						    				accessories.push(new LightifyGroup(group, me.api, me));
+						    			}
+							    	} else {
+							    		me.log.warn('Ignored unnamed group');
+							    	}
+						    		
+						    	});
+						    	callback(accessories);
+						    }
+						});
+				    } else {
+				    	callback(accessories);
+				    }
 			    }
 			});
 		});

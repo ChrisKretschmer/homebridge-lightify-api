@@ -43,4 +43,4 @@ Please let me know if devices behave strange so I can fix it.
 ## Group Support
 
 This plugin supports Lightify Groups, but they will appear as Plugs in Homekit (at least for the moment).
-To enable support, the config option "exportGroups" must e set to "yes"
+To enable support, the config option "exportGroups" must be set to "yes"

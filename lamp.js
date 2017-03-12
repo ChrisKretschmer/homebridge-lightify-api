@@ -71,7 +71,11 @@ class Lamp extends Plug {
 			level: (value / 100)
 		});
 		me.plugin.restClient.get(url, args, function (data, response) {
-    		if(callback) callback();
+        	if(data.errorCode) {
+                this.plugin.log.warn("Failed to set brightness: " + data.errorMessage);
+            } else {
+				if(callback) callback(data);
+            }
 		});
 	}
 
@@ -99,7 +103,11 @@ class Lamp extends Plug {
 			saturation: this.saturation / 100 || 1
 		});
 		me.plugin.restClient.get(url, args, function (data, response) {
-    		if(callback) callback();
+        	if(data.errorCode) {
+                this.plugin.log.warn("Failed to set Hue: " + data.errorMessage);
+            } else {
+				if(callback) callback(data);
+            }
 		});
 	}
 
@@ -127,7 +135,11 @@ class Lamp extends Plug {
 			ctemp: value
 		});
 		me.plugin.restClient.get(url, args, function (data, response) {
-    		if(callback) callback();
+        	if(data.errorCode) {
+                this.plugin.log.warn("Failed to set state: " + data.errorMessage);
+            } else {
+				if(callback) callback(data);
+            }
 		});
 	}
 

@@ -9,9 +9,7 @@ class Group extends Plug {
 
     getState(callback) {
         var me = this;
-        this.getDeviceInfo(function(data) {
-            callback(null, !!me.state);
-        });
+        callback(null, !!me.state);
     }
 
     setState(value, callback) {
@@ -30,7 +28,11 @@ class Group extends Plug {
         });
         this.state = (value) ? 1 : 0;
         me.plugin.restClient.get(url, args, function (data, response) {
-            if(callback) callback();
+            if(data.errorCode) {
+                this.plugin.log.warn("Failed to set state: " + data.errorMessage);
+            } else {
+                if(callback) callback();
+            }
         });
     }
 }
