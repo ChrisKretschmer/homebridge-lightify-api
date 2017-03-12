@@ -74,7 +74,7 @@ class Lamp extends Plug {
         	if(data.errorCode) {
                 this.plugin.log.warn("Failed to set brightness: " + data.errorMessage);
             } else {
-				if(callback) callback(data);
+				if(callback) callback();
             }
 		});
 	}
@@ -106,7 +106,7 @@ class Lamp extends Plug {
         	if(data.errorCode) {
                 this.plugin.log.warn("Failed to set Hue: " + data.errorMessage);
             } else {
-				if(callback) callback(data);
+				if(callback) callback();
             }
 		});
 	}
@@ -138,7 +138,7 @@ class Lamp extends Plug {
         	if(data.errorCode) {
                 this.plugin.log.warn("Failed to set state: " + data.errorMessage);
             } else {
-				if(callback) callback(data);
+				if(callback) callback();
             }
 		});
 	}

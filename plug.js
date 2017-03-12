@@ -43,11 +43,12 @@ class Plug {
 			onoff: (value) ? 1 : 0
 		});
 		me.plugin.restClient.get(url, args, function (data, response) {
+			console.log(data)
         	if(data.errorCode) {
                 this.plugin.log.warn("Failed to set state: " + data.errorMessage);
             } else {
 				me.currentData = data;
-				if(callback) callback(data);
+				if(callback) callback();
             }
 		});
 	}
