@@ -1,6 +1,9 @@
 # homebridge-lightify-api
 Lightify Homebridge plugin which uses the official API
 
+# OUTDATED
+As I don't own any Lightify equipment anymore, I cant adapt the changes to the API. Please use https://www.npmjs.com/package/homebridge-lightify from now on.
+
 ## Installation
 
 npm -g install homebridge-lightify-api
